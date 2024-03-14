@@ -1,40 +1,68 @@
-# include <iostream>
+#include <iostream>
+#include <cmath> // Instead of <math.h>
 using namespace std;
 
-int main() {
+class Calculator
+{
+    float a, b;
 
-  char op;
-  float num1, num2;
+public:
+    void result()
+    {
+        int choice;
+        do
+        {
+            cout << "Enter 1 to Add 2 Numbers" <<
+                    "\nEnter 2 to Subtract 2 Numbers" <<
+                    "\nEnter 3 to Multiply 2 Numbers" <<
+                    "\nEnter 4 to Divide 2 Numbers" <<
+                    "\nEnter 0 To Exit\n";
+            cout << "Enter Choice: ";
+            cin >> choice;
 
-  cout << "Enter operator: +, -, *, /: ";
-  cin >> op;
+            if (choice == 0)
+            {
+                cout << "Exiting program..." << endl;
+                return;
+            }
 
-  cout << "Enter two operands: ";
-  cin >> num1 >> num2;
+            cout << "Enter First Number: ";
+            cin >> a;
+            cout << "Enter Second Number: ";
+            cin >> b;
 
-  switch(op) {
+            switch (choice)
+            {
+            case 1:
+                cout << "Result: " << (a + b) << endl;
+                break;
+            case 2:
+                cout << "Result: " << (a - b) << endl;
+                break;
+            case 3:
+                cout << "Result: " << (a * b) << endl;
+                break;
+            case 4:
+                if (b == 0)
+                {
+                    cout << "Division By Zero" << endl;
+                }
+                else
+                {
+                    cout << "Result: " << (a / b) << endl;
+                }
+                break;
+            default:
+                cout << "Invalid choice" << endl;
+            }
 
-    case '+':
-      cout << num1 << " + " << num2 << " = " << num1 + num2;
-      break;
+        } while (choice != 0);
+    }
+};
 
-    case '-':
-      cout << num1 << " - " << num2 << " = " << num1 - num2;
-      break;
-
-    case '*':
-      cout << num1 << " * " << num2 << " = " << num1 * num2;
-      break;
-
-    case '/':
-      cout << num1 << " / " << num2 << " = " << num1 / num2;
-      break;
-
-    default:
-      // If the operator is other than +, -, * or /, error message is shown
-      cout << "Error! operator is not correct";
-      break;
-  }
-
-  return 0;
+int main()
+{
+    Calculator c;
+    c.result();
+    return 0;
 }
